@@ -53,8 +53,8 @@ if len(sys.argv) < 3:
    exit(-1)
 
 # bail out if ExifTool executable is not in PATH
-cmd_does_not_exist = lambda cmd: shutil.which(cmd) is None
-if cmd_does_not_exist("exiftool"):
+cmdExists = lambda cmd: shutil.which(cmd) is not None
+if cmdExists("exiftool") is False:
    print("Error: cannot find ExifTool executable")
    print("Please ensure you have ExifTool executable in PATH")
    exit(-2)
