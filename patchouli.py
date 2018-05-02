@@ -7,7 +7,8 @@
 # with the following fields:
 # <DateTimeOriginal>,<ShutterSpeedValue>,<ApertureValue>,<FocalLength>,<MaxApertureValue>,<ISOSpeed>
 #
-# Known issues: only works under a POSIX shell if wildcard is used for multiple image files
+# Known issues: the records in the CSV file must match the number and order of the image files supplied
+#               otherwise undefined behaviors will occur
 #
 # Copyright (c) 2018, Sijie Bu
 # All rights reserved.
@@ -34,6 +35,7 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 from subprocess import call
+import glob
 import shutil
 import sys
 
@@ -61,7 +63,10 @@ if cmdExists("exiftool") is False:
 
 # extract information from given parameters
 csvFileName = sys.argv[1]
-imageFileNames = sys.argv[2:]
+imageFileNames = list()
+# for you Windows guys, if the system does not expand wildcard then we have to do it ourselves
+for i in sys.argv[2:]:
+   imageFileNames += glob.glob(i)
 
 # update the files one by one
 with open(csvFileName, "r", encoding=CSV_ENCODING) as paramsDb:
