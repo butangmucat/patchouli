@@ -76,5 +76,6 @@ with open(csvFileName, "r", encoding=CSV_ENCODING) as paramsDb:
       call(["exiftool", "-overwrite_original", "-artist=" + ARTIST,
             "-Make=" + MAKE, "-Model=" + MODEL, "-DateTimeOriginal=" + params[0],
             "-ShutterSpeedValue=" + params[1], "-ApertureValue=" + params[2],
-            "-FocalLength=" + params[3], "-MaxApertureValue=" + params[4],
-            "-ISO=" + params[5], "-ISOSpeed=" + params[5], i])
+            "-FocalLength=" + params[3], "-FocalLengthIn35mmFormat="+ params[3],
+            "-MaxApertureValue=" + params[4], "-ISO=" + params[5], "-ISOSpeed=" + params[5],
+            i])
