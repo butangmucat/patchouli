@@ -61,7 +61,7 @@ if cmdExists("exiftool") is False:
 
 # extract information from given parameters
 csvFileName = sys.argv[1]
-imageFileNames = sys.argv[2:len(sys.argv)]
+imageFileNames = sys.argv[2:]
 
 # update the files one by one
 with open(csvFileName, "r", encoding=CSV_ENCODING) as paramsDb:
